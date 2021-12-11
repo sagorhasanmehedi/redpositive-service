@@ -15,10 +15,6 @@
   background-color: #e4e4e4;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
 }
 
 .card {
@@ -207,4 +203,17 @@
   vertical-align: middle;
   padding: 0;
   margin: 0;
+}
+.rowButton {
+  padding: 1px 10px;
+  border: 3px solid rgb(128, 4, 4);
+  background-color: rgb(99, 2, 2);
+  color: white;
+  transition: 0.3s;
+  border-radius: 3px;
+}
+.rowButton:hover {
+  background-color: red;
+  border: 3px solid red;
+  border-radius: 3px;
 }

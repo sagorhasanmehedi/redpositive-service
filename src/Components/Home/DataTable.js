@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "./DataTable.css";
 import Popup from "../Popup/Popup";
+import axios from "axios";
+import { Button } from "@mui/material";
 
 const DataTable = () => {
   const [open, setOpen] = useState(false);
+  const [data, setdata] = useState([]);
 
   // modal open function
   const handleOpen = () => setOpen(true);
@@ -11,15 +14,31 @@ const DataTable = () => {
   // modal close function
   const handleClose = () => setOpen(false);
 
+  // get data from database
+  useState(() => {
+    axios
+      .get("http://localhost:7000/data")
+      .then((response) => {
+        setdata(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  // handle delete
+  const deleteRowData = (id) => {
+    fetch(`http://localhost:7000/delete/:${id}`);
+  };
+
   return (
-    <>
+    <React.Fragment>
       <div className="table">
         <div className="card">
           <div className="table-title">
             <h2>REDPOSITIVE SERVICES</h2>
           </div>
           <div className="button-container">
-            {/* <span>These buttons aren't working ></span> */}
             <button className="danger" title="Send In Email">
               SEND
             </button>
@@ -53,18 +72,29 @@ const DataTable = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>1</td>
-                  <td>This is Item number 1-1</td>
-                  <td>This is Item number 2-1</td>
-                  <td>This is Item number 3-1</td>
-                  <td>This is Item number 4-1</td>
-                  <td>This is Item number 5-1</td>
-                </tr>
-                <tr>
+                {data.map((tableRow, index) => (
+                  <tr>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>{index}</td>
+                    <td></td>
+                    <td>{tableRow.name}</td>
+                    <td>{tableRow.email}</td>
+                    <td>{tableRow.hobbies}</td>
+                    <td>
+                      {
+                        <button
+                          onClick={() => deleteRowData(tableRow._id)}
+                          className="rowButton"
+                        >
+                          Delete
+                        </button>
+                      }
+                    </td>
+                  </tr>
+                ))}
+                {/* <tr>
                   <td>
                     <input type="checkbox" />
                   </td>
@@ -272,155 +302,14 @@ const DataTable = () => {
                   <td>This is Item number 3-20</td>
                   <td>This is Item number 4-20</td>
                   <td>This is Item number 5-20</td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
-            <div className="pagination">
-              {/* <label className="disabled" for="table_radio_-1">
-              &laquo; Previous
-            </label>
-            <label className="active" for="table_radio_0" id="table_pager_0">
-              1
-            </label>
-            <label for="table_radio_1" id="table_pager_1">
-              2
-            </label>
-            <label for="table_radio_2" id="table_pager_2">
-              3
-            </label>
-            <label for="table_radio_3" id="table_pager_3">
-              4
-            </label>
-            <label for="table_radio_4" id="table_pager_4">
-              5
-            </label>
-            <label for="table_radio_1">Next &raquo;</label> */}
-            </div>
-            <input
-              className="table-radio"
-              type="radio"
-              name="table_radio"
-              id="table_radio_1"
-            />
-            <div className="table-display">Showing 21 to 40 of 95 items</div>
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>No</th>
-                  <th>FIRST HEADER</th>
-                  <th>SECOND HEADER</th>
-                  <th>THIRD HEADER</th>
-                  <th>FOURTH HEADER</th>
-                  <th>FIFTH HEADER</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>21</td>
-                  <td>This is Item number 1-21</td>
-                  <td>This is Item number 2-21</td>
-                  <td>This is Item number 3-21</td>
-                  <td>This is Item number 4-21</td>
-                  <td>This is Item number 5-21</td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>22</td>
-                  <td>This is Item number 1-22</td>
-                  <td>This is Item number 2-22</td>
-                  <td>This is Item number 3-22</td>
-                  <td>This is Item number 4-22</td>
-                  <td>This is Item number 5-22</td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>23</td>
-                  <td>This is Item number 1-23</td>
-                  <td>This is Item number 2-23</td>
-                  <td>This is Item number 3-23</td>
-                  <td>This is Item number 4-23</td>
-                  <td>This is Item number 5-23</td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>24</td>
-                  <td>This is Item number 1-24</td>
-                  <td>This is Item number 2-24</td>
-                  <td>This is Item number 3-24</td>
-                  <td>This is Item number 4-24</td>
-                  <td>This is Item number 5-24</td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>25</td>
-                  <td>This is Item number 1-25</td>
-                  <td>This is Item number 2-25</td>
-                  <td>This is Item number 3-25</td>
-                  <td>This is Item number 4-25</td>
-                  <td>This is Item number 5-25</td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>26</td>
-                  <td>This is Item number 1-26</td>
-                  <td>This is Item number 2-26</td>
-                  <td>This is Item number 3-26</td>
-                  <td>This is Item number 4-26</td>
-                  <td>This is Item number 5-26</td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>27</td>
-                  <td>This is Item number 1-27</td>
-                  <td>This is Item number 2-27</td>
-                  <td>This is Item number 3-27</td>
-                  <td>This is Item number 4-27</td>
-                  <td>This is Item number 5-27</td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="pagination">
-              <label for="table_radio_3">&laquo; Previous</label>
-              <label for="table_radio_0" id="table_pager_0">
-                1
-              </label>
-              <label for="table_radio_1" id="table_pager_1">
-                2
-              </label>
-              <label for="table_radio_2" id="table_pager_2">
-                3
-              </label>
-              <label for="table_radio_3" id="table_pager_3">
-                4
-              </label>
-              <label className="active" for="table_radio_4" id="table_pager_4">
-                5
-              </label>
-              <label className="disabled" for="table_radio_5">
-                Next &raquo;
-              </label>
-            </div>
           </div>
         </div>
       </div>
       <Popup open={open} handleClose={handleClose} />
-    </>
+    </React.Fragment>
   );
 };
 
