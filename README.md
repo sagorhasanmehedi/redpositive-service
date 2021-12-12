@@ -1,10 +1,11 @@
 # RedPositive
 
-- Live Website [https://assignment-12-2c757.web.app/](https://assignment-12-2c757.web.app/)
+- Live Website [https://redpositive.netlify.app/](https://redpositive.netlify.app/)
 - Server side code [https://github.com/sagorhasanmehedi/redpositive-server](https://github.com/sagorhasanmehedi/redpositive-server)
 
-## Features
+## Technology & Features
 
+- React
 - Database MongoDB
 - Client side deploy in netlify
 - Server side deploy in heroku
