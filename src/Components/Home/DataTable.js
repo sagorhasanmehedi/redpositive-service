@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import "./DataTable.css";
 import Popup from "../Popup/Popup";
 import axios from "axios";
-import { Button } from "@mui/material";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EmailIcon from "@mui/icons-material/Email";
 import swal from "sweetalert";
 
 const DataTable = () => {
@@ -59,7 +61,21 @@ const DataTable = () => {
 
   // handle send email
   const sendEmail = () => {
-    console.log(checkBoxData);
+    axios.post("http://localhost:7000/email", { checkBoxData }).then((data) => {
+      console.log(data.data);
+      if (data.data === "Email send") {
+        swal({
+          icon: "success",
+        });
+      } else {
+        swal({
+          icon: "error",
+          title: "Oops... Cannot Send Mail",
+          text: `${data.data}`,
+          footer: `<a href="">${data.data}</a>`,
+        });
+      }
+    });
   };
 
   return (
@@ -76,6 +92,7 @@ const DataTable = () => {
               title="Send In Email"
             >
               SEND
+              <EmailIcon sx={{ fontSize: "20px", ml: "5px", pb: "1px" }} />
             </button>
             <button
               onClick={handleOpen}
@@ -103,7 +120,7 @@ const DataTable = () => {
                   <th>PHONE NUMBER</th>
                   <th>EMAIL</th>
                   <th>HOBBIES</th>
-                  <th>ACTION</th>
+                  <th>DELETE</th>
                 </tr>
               </thead>
               <tbody>
@@ -115,20 +132,21 @@ const DataTable = () => {
                         type="checkbox"
                       />
                     </td>
-                    <td>{index}</td>
+                    <td>{index + 1}</td>
                     <td>{tableRow.name}</td>
                     <td>{tableRow.phoneNumber}</td>
                     <td>{tableRow.email}</td>
                     <td>{tableRow.hobbies}</td>
                     <td>
-                      {
-                        <button
-                          onClick={() => deleteRowData(tableRow._id)}
-                          className="rowButton"
-                        >
-                          Delete
-                        </button>
-                      }
+                      {" "}
+                      <IconButton
+                        onClick={() => deleteRowData(tableRow._id)}
+                        className="rowButton"
+                        aria-label="share"
+                        sx={{ margin: 0, padding: 0 }}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
                     </td>
                   </tr>
                 ))}

@@ -1,15 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"); */
-/* body {
-  font-family: "Open Sans", sans-serif;
-  background-color: #e4e4e4;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-} */
-
 .table {
   font-family: "Open Sans", sans-serif;
   background-color: #e4e4e4;
@@ -113,26 +101,6 @@
 .table-concept table tbody tr:hover {
   background-color: #ebebeb;
 }
-.table-concept .pagination {
-  background-color: #8f8f8f;
-  width: 100%;
-  display: none;
-  position: sticky;
-  bottom: 0;
-  left: 0;
-}
-.table-concept .pagination > label {
-  background-color: #8f8f8f;
-  color: #ffffff;
-  padding: 10px;
-  cursor: pointer;
-}
-.table-concept .pagination > label:hover {
-  background-color: darkgray;
-}
-.table-concept .pagination > label:active {
-  background-color: #767676;
-}
 
 .table-title {
   color: #ffffff;
@@ -161,8 +129,9 @@
   margin-right: 10px;
 }
 .button-container button {
-  font-family: inherit;
-  font-size: inherit;
+  font-size: 15px;
+  font-family: "Work Sans", sans-serif !important;
+  letter-spacing: 0.04em;
   color: #ffffff;
   padding: 10px 15px;
   border: 0;
@@ -180,17 +149,11 @@
 .button-container button.primary:active {
   background-color: #0065e0;
 }
-.button-container button.primary {
-  background-color: #147eff;
-}
-.button-container button.primary:hover {
-  background-color: #479aff;
-}
-.button-container button.primary:active {
-  background-color: #0065e0;
-}
+
 .button-container button.danger {
   background-color: #d11800;
+  display: flex;
+  align-items: center !important;
 }
 .button-container button.danger:hover {
   background-color: #ff2205;
@@ -198,22 +161,11 @@
 .button-container button.danger:active {
   background-color: #9e1200;
 }
-.button-container button svg {
-  fill: #ffffff;
-  vertical-align: middle;
-  padding: 0;
-  margin: 0;
-}
+
 .rowButton {
-  padding: 1px 10px;
-  border: 3px solid rgb(128, 4, 4);
-  background-color: rgb(99, 2, 2);
-  color: white;
-  transition: 0.3s;
-  border-radius: 3px;
+  color: #6b1004 !important;
+  transition: 0.3s !important;
 }
 .rowButton:hover {
-  background-color: red;
-  border: 3px solid red;
-  border-radius: 3px;
+  color: red !important;
 }
