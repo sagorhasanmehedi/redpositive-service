@@ -13,6 +13,7 @@
 - User can add new row in table
 - Using delete button user can delete data
 - User can selecet a row and send on email
+- Use Material UI as component library
 - Pakage: axios,nodemailer,mailgun,sweet alert
 
 <!-- ## [Live Website 💥](https://assignment-12-2c757.web.app/)
