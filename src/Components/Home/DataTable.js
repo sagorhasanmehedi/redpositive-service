@@ -23,7 +23,7 @@ const DataTable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7000/data")
+      .get("https://pacific-spire-20501.herokuapp.com/data")
       .then((response) => {
         setdata(response.data);
       })
@@ -36,7 +36,7 @@ const DataTable = () => {
   const deleteRowData = (id) => {
     const procid = window.confirm("Are You Sure Want To Delete");
     if (procid) {
-      fetch(`http://localhost:7000/delete/${id}`, {
+      fetch(`https://pacific-spire-20501.herokuapp.com/delete/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -61,21 +61,23 @@ const DataTable = () => {
 
   // handle send email
   const sendEmail = () => {
-    axios.post("http://localhost:7000/email", { checkBoxData }).then((data) => {
-      console.log(data.data);
-      if (data.data === "Email send") {
-        swal({
-          icon: "success",
-        });
-      } else {
-        swal({
-          icon: "error",
-          title: "Oops... Cannot Send Mail",
-          text: `${data.data}`,
-          footer: `<a href="">${data.data}</a>`,
-        });
-      }
-    });
+    axios
+      .post("https://pacific-spire-20501.herokuapp.com/email", { checkBoxData })
+      .then((data) => {
+        console.log(data.data);
+        if (data.data === "Email send") {
+          swal({
+            icon: "success",
+          });
+        } else {
+          swal({
+            icon: "error",
+            title: "Oops... Cannot Send Mail",
+            text: `${data.data}`,
+            footer: `<a href="">${data.data}</a>`,
+          });
+        }
+      });
   };
 
   return (

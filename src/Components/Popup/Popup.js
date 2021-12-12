@@ -32,7 +32,7 @@ const Popup = ({ open, handleClose }) => {
 
     // form data send to database
     axios
-      .post("http://localhost:7000/data", data)
+      .post("https://pacific-spire-20501.herokuapp.com/data", data)
       .then((response) => {
         if (response.data.insertedId) {
           handleClose();
